@@ -834,9 +834,9 @@ npx prettier --check xxx(path)
 
 > NOTE: If any local configuration file is present (i.e. `.prettierrc, .editorconfig `) the VS Code settings will **NOT** be used.
 
-You can use [VS Code settings](vscode-webview://extensioneditor/index.html?id=extensionEditor&swVersion=2&extensionId=&platform=electron&vscode-resource-base-authority=vscode-resource.vscode-webview.net#prettier-settings) to configure prettier. Settings will be read from (优先级从高到低):
+You can use VS Code settings to configure prettier. Settings will be read from (优先级从高到低):
 
-1. [Prettier configuration file](https://prettier.io/docs/en/configuration.html);
+1. [Prettier configuration file][prettier configureFile];
 2. `.editorconfig`;
 3. Visual Studio Code Settings (Ignored if any other configuration is present);
 

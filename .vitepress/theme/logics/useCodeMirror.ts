@@ -11,9 +11,8 @@ export async function useCodeMirror(
 ) {
   const CodeMirror = await import('codemirror')
 
-  // @ts-expect-error untyped
   await import('codemirror/mode/javascript/javascript')
-  // @ts-expect-error untyped
+  
   await import('codemirror/mode/css/css')
   // // @ts-expect-error untyped
   // await import('codemirror/mode/htmlem')

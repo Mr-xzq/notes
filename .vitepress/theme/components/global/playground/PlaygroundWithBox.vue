@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// @ts-nocheck 
 import { computed } from 'vue'
 import { useVModels } from '@vueuse/core'
 

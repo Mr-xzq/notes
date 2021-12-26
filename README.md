@@ -1,8 +1,8 @@
-[xzq notes]: https://github.com/windicss/windicss
+[xzq notes]: https://github.com/Mr-xzq/notes
 
 # Xzq Notes Documentation
 
-This is the documentation website for [xzq Notes].
+This is the documentation website for [xzq notes].
 
 https://windicss.org
 
