@@ -6,7 +6,7 @@ import head from './head'
 import themeConfig from './theme'
 
 const config: UserConfig<DefaultTheme.Config> = {
-  title: 'Windi CSS',
+  title: 'Xzq Notes',
   description: metaData.description,
   head,
   themeConfig,

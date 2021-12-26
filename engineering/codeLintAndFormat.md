@@ -16,7 +16,7 @@
 [vscode]: https://code.visualstudio.com/
 
 
-# 手摸手带你构建代码规范
+# 手把手带你构建代码规范
 
 ## 代码规范构建
 
