@@ -8,15 +8,24 @@ const themeConfig: DefaultTheme.Config = {
     apiKey: 'c0dfcf1e50c42717f0d536ac6fd11d78',
     indexName: 'windicss-next',
   },
-  repo: 'windicss/windicss',
+  // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
+  repo: 'Mr-xzq/notes',
+  // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
+  // "GitHub"/"GitLab"/"Bitbucket" 其中之一，或是 "Source"。
+  repoLabel: 'GitHub',
   logo: '/assets/logo.svg',
+  // 假如文档不是放在仓库的根目录下
   docsDir: '.',
-  docsBranch: 'main',
-  docsRepo: 'windicss/docs',
+  // 假如文档放在一个特定的分支下
+  docsBranch: 'master',
+  // 假如你的文档仓库和项目本身不在一个仓库
+  docsRepo: 'Mr-xzq/notes',
   editLinks: true,
-  editLinkText: 'Suggest changes to this page',
+  // 默认为 "Edit this page"
+  editLinkText: 'Edit this page',
   nav,
   sidebar,
+  lastUpdated: 'Last Updated'
 }
 
 export default themeConfig

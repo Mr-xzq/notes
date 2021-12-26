@@ -1,10 +1,10 @@
-[xzq notes]: https://github.com/Mr-xzq/notes
+[xzq notes]: https://notes-xzq.vercel.app/
 
 # Xzq Notes Documentation
 
 This is the documentation website for [xzq notes].
 
-https://windicss.org
+https://notes-xzq.vercel.app/
 
 ## Development
 
