@@ -1,7 +1,7 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 // FIXME 部署之后设置自己的网址
-const site = isProd ? 'https://windicss.org' : 'http://localhost:3000'
+const site = isProd ? 'https://notes-xzq.vercel.app' : 'http://localhost:3000'
 
 export const metaData = {
   title: 'xzq notes',
