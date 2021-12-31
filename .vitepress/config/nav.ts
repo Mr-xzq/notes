@@ -6,6 +6,7 @@ export const nav: DefaultTheme.Config['nav'] = [
     text: 'Guide',
     items: [
       { text: '工程化', link: '/engineering/' },
+      { text: 'TypeScript', link: '/tsLearn/' },
     ],
   },
   // 拆分栏目, 将文档划分到不同栏目中

@@ -31,5 +31,11 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '代码规范', link: '/engineering/codeLintAndFormat' },
       ],
     },
+    {
+      text: 'TypeScript',
+      children: [
+        { text: '基础', link: '/tsLearn/' },
+      ],
+    },
   ],
 }
