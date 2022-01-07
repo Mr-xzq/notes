@@ -7,6 +7,7 @@ export const nav: DefaultTheme.Config['nav'] = [
     items: [
       { text: '工程化', link: '/engineering/' },
       { text: 'TypeScript', link: '/tsLearn/' },
+      { text: 'Vue', link: '/vueLearn/reactive' }
     ],
   },
   // 拆分栏目, 将文档划分到不同栏目中
