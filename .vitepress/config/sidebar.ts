@@ -4,6 +4,13 @@ import type { DefaultTheme } from '@/config'
 export const sidebar: DefaultTheme.Config['sidebar'] = {
   '/': [
     {
+      text: '基础',
+      children: [
+        { text: '事件循环', link: '/basic/eventLoop' },
+        { text: '浏览器的进程与线程', link: '/basic/browserProcessAndThread' },
+      ]
+    },
+    {
       text: '工程化',
       children: [
         { text: '介绍', link: '/engineering/' },
@@ -19,7 +26,8 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     {
       text: 'Vue',
       children: [
-        { text: '深入 Vue 响应式', link: '/vueLearn/reactive' },
+        { text: '深入理解响应式', link: '/vueLearn/reactive' },
+        { text: '深入 render-mount-patch 流程', link: '/vueLearn/render_h_mount_patch' },
       ],
     },
   ],
