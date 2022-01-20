@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
+// import { useData } from 'vitepress'
 import { useRepo } from '@/logics/repo'
 
-const { theme } = useData()
+// const { theme } = useData()
 const repo = useRepo()
 </script>
 
@@ -15,10 +15,10 @@ const repo = useRepo()
       <div class="flex items-center flex-1 lg:flex-none">
         <AppLogo />
       </div>
-      <div class="flex items-center order-last ml-2 lg:(order-none flex-1 ml-4) xl:ml-10">
+      <!-- <div class="flex items-center order-last ml-2 lg:(order-none flex-1 ml-4) xl:ml-10">
         <AlgoliaSearchBox :options="theme.algolia" />
-      </div>
-      <div class="hidden lg:flex items-center flex-1">
+      </div> -->
+      <div class="hidden lg:flex items-center flex-1 flex-row-reverse">
         <DropdownMenu />
       </div>
       <div class="flex items-center lg:space-x-3 lg:pl-3 xl:pl-6">

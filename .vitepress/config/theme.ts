@@ -3,11 +3,11 @@ import { sidebar } from './sidebar'
 import { nav } from './nav'
 
 const themeConfig: DefaultTheme.Config = {
-  algolia: {
-    appId: 'RYAT0G9BU3',
-    apiKey: 'c0dfcf1e50c42717f0d536ac6fd11d78',
-    indexName: 'windicss-next',
-  },
+  // algolia: {
+  //   appId: 'RYAT0G9BU3',
+  //   apiKey: 'c0dfcf1e50c42717f0d536ac6fd11d78',
+  //   indexName: 'windicss-next',
+  // },
   // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
   repo: 'Mr-xzq/notes',
   // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
