@@ -6,7 +6,7 @@ import { metaData } from './constants'
 const head: HeadConfig[] = [
   ['meta', { name: 'author', content: 'Xzq' }],
   // 设置别人搜索的关键字(网站的关键字)
-  ['meta', { name: 'keywords', content: 'javascript, js, es, css, tailwindcss, vitejs, vite, vue, vue3, 学习笔记, notes' }],
+  ['meta', { name: 'keywords', content: '学习笔记, notes, 个人技术博客, javascript, js, es, css, tailwindcss, vitejs, vite, vue, vue3' }],
   ['link', { rel: 'icon', type: 'image/svg+xml', href: '/assets/logo.svg' }],
 
   ['meta', { name: 'HandheldFriendly', content: 'True' }],
