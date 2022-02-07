@@ -13,7 +13,6 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     {
       text: '工程化',
       children: [
-        { text: '介绍', link: '/engineering/' },
         { text: '如何统一代码规范', link: '/engineering/codeLintAndFormat' },
       ],
     },

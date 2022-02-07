@@ -6,7 +6,7 @@ export const nav: DefaultTheme.Config['nav'] = [
     text: 'Guide',
     items: [
       { text: '基础', link: '/basic/eventLoop' },
-      { text: '工程化', link: '/engineering/' },
+      { text: '工程化', link: '/engineering/codeLintAndFormat' },
       { text: 'TypeScript', link: '/tsLearn/' },
       { text: 'Vue', link: '/vueLearn/reactive' }
     ],
