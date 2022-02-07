@@ -28,6 +28,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       children: [
         { text: '深入理解响应式', link: '/vueLearn/reactive' },
         { text: '深入 render-mount-patch 流程', link: '/vueLearn/render_h_mount_patch' },
+        { text: '深入异步更新', link: '/vueLearn/async_update' },
       ],
     },
   ],
