@@ -1,3 +1,8 @@
+[ES6-Generator]:https://es6.ruanyifeng.com/#docs/generator
+[ES6-Generator-Async]:https://es6.ruanyifeng.com/#docs/generator-async
+[ES6-Iterator-for...of]:https://es6.ruanyifeng.com/#docs/iterator
+
+
 # Generator 基本概念和使用
 
 ## 初步理解 Generator
@@ -864,3 +869,11 @@ function runByPromise(generator) {
   cb()
 }
 ```
+
+## 参考链接
+
+[ES6-Generator]
+
+[ES6-Generator-Async]
+
+[Iterator 和 for...of 循环][ES6-Iterator-for...of]
