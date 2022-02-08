@@ -16,6 +16,7 @@
     "@windicss/shared-components": "^0.1.5",
     "codemirror": "^5.63.0",
     "codemirror-theme-vars": "^0.1.1",
+    "dayjs": "^1.10.7",
     "json5": "^2.2.0",
     "lz-string": "^1.4.4",
     "mitt": "^3.0.0",
