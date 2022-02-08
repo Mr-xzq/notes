@@ -8,6 +8,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       children: [
         { text: '事件循环', link: '/basic/eventLoop' },
         { text: '浏览器的进程与线程', link: '/basic/browserProcessAndThread' },
+        { text: '简述 JS 异步发展不同阶段', link: '/basic/asyncHistory' },
       ]
     },
     {
