@@ -10,6 +10,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '浏览器的进程与线程', link: '/basic/browserProcessAndThread' },
         { text: '简述 JS 异步发展不同阶段', link: '/basic/asyncHistory' },
         { text: 'ES6 - Generator', link: '/basic/generator' },
+        { text: 'JS 位运算', link: '/basic/bitOperation' },
       ]
     },
     {
