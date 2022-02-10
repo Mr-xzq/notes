@@ -15,6 +15,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: 'JS 位运算', link: '/basic/bitOperation' },
         { text: 'JS 正则表达式', link: '/basic/regularExpression' },
         { text: 'Object 常见 Api', link: '/basic/objectApi' },
+        { text: '遍历对象属性常用方法', link: '/basic/traverseObjectProperty' },
       ]
     },
     {
