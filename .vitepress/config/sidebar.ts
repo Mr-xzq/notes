@@ -14,6 +14,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: 'ES6 - Reflect', link: '/basic/reflect' },
         { text: 'JS 位运算', link: '/basic/bitOperation' },
         { text: 'JS 正则表达式', link: '/basic/regularExpression' },
+        { text: 'Object 常见 Api', link: '/basic/objectApi' },
       ]
     },
     {
