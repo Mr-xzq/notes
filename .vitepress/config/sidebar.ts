@@ -11,6 +11,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '简述 JS 异步发展不同阶段', link: '/basic/asyncHistory' },
         { text: 'ES6 - Generator', link: '/basic/generator' },
         { text: 'ES6 - Proxy', link: '/basic/proxy' },
+        { text: 'ES6 - Reflect', link: '/basic/reflect' },
         { text: 'JS 位运算', link: '/basic/bitOperation' },
       ]
     },
