@@ -19,6 +19,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '转化为数字类型的常用方法', link: '/basic/convert2Number' },
         { text: '原型链', link: '/basic/prototypeChain' },
         { text: '继承', link: '/basic/inherit' },
+        { text: '作用域(链),执行期上下文(栈),变量提升,闭包', link: '/basic/scopeChain' },
         { text: '深入 this', link: '/basic/this' },
         { text: '运算符优先级', link: '/basic/operatorPriority' },
       ]
