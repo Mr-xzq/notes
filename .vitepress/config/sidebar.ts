@@ -17,6 +17,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: 'Object 常见 Api', link: '/basic/objectApi' },
         { text: '遍历对象属性常用方法', link: '/basic/traverseObjectProperty' },
         { text: '转化为数字类型的常用方法', link: '/basic/convert2Number' },
+        { text: '原型链', link: '/basic/prototypeChain' },
       ]
     },
     {
