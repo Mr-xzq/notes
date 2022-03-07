@@ -20,6 +20,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '原型链', link: '/basic/prototypeChain' },
         { text: '继承', link: '/basic/inherit' },
         { text: '深入 this', link: '/basic/this' },
+        { text: '运算符优先级', link: '/basic/operatorPriority' },
       ]
     },
     {
