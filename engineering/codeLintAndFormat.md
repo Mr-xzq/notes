@@ -14,6 +14,8 @@
 [chalk]: https://github.com/chalk/chalk#readme
 [commitizen]: https://github.com/commitizen/cz-cli
 [vscode]: https://code.visualstudio.com/
+[mrm]: https://mrm.js.org/
+[mrm-lint-staged]: https://mrm.js.org/docs/mrm-task-lint-staged
 
 
 # 手把手带你构建代码规范
@@ -396,7 +398,7 @@ if (!commitRE.test(commitMsg)) {
    ```json
    {
       "lint-staged": {
-       "*.{js,vue,html,json}": "eslint --cache --fix"
+       "*.{js,vue,html}": "eslint --cache --fix"
       }
    }
    ```
@@ -412,14 +414,19 @@ if (!commitRE.test(commitMsg)) {
    npx lint-staged
    ```
 
-   
+
+
 
 #### 快捷配置
 
+> 注意：如果你当前已经安装了 `husky, lint-staged` 的情况下，记得先`uninstall`。
+
 在我们已经安装了`eslint, prettier`的前提下，可以直接一步到位
 
+参考：https://prettier.io/docs/en/precommit.html#option-1-lint-stagedhttpsgithubcomokonetlint-staged
+
 ```bash
-npx mrm@2 lint-staged
+npx mrm@2 lint-staged # mrm@2 指的是选择主版本为 2 的 mrm, 一般我们可以直接 npx mrm lint-staged
 ```
 
 1. 这行命令会帮我们安装 `husky`，`lint-staged`;
@@ -438,6 +445,200 @@ npx mrm@2 lint-staged
      }
    }
    ```
+
+#### [mrm] 是什么
+
+> 命令行工具可帮助您保持开源项目的配置（`package.json、.gitignore、.eslintrc` 等）同步。
+>
+
+##### 优点
+
+1. 除非您愿意，否则不会覆盖您的数据；
+
+2. 最小的更改：保留原始文件格式或从 `EditorConfig` 读取样式；
+
+3. 最小配置：尝试从项目本身或环境推断配置；
+
+4. 包括 `ESLint、Prettier、lint-staged` 等流行工具的可定制任务；
+
+5. 用于处理 `JSON、YAML、INI、Markdown` 和换行符文本文件的自定义任务和工具；
+
+6. 通过 `npm` 共享任务并将它们分组到预设中；
+
+也就是说你可以用 `mrm`来共享别人的一些工具配置的最佳实践，或者如果你自己有最佳实践也可以传上去，然后通过`mrm`来同步，不管是老项目配置的升级或者新项目配置的一键配置都挺方便的。
+
+
+
+##### 示例
+
+如果你想快速开始一个项目，使用单个命令安装基本 `JavaScript` 项目所需的一切，并在不到一分钟的时间内开始工作：
+
+```shell
+git init && npx mrm package editorconfig gitignore eslint prettier lint-staged
+```
+
+
+
+如果你想配置`license, readme, contributing`文件，再次运行 [mrm] 以引导基本文档，并根据需要调整它们：
+
+```shell
+npx mrm license readme contributing
+```
+
+
+
+如果想运行一个非常老的项目，可以再次运行相同的命令以升级和迁移所有配置：
+
+```shell
+npx mrm package editorconfig gitignore eslint prettier lint-staged
+```
+
+
+
+##### 常见预设（`preset`）
+
+- [ci](https://mrm.js.org/docs/mrm-task-ci)
+- [codecov](https://mrm.js.org/docs/mrm-task-codecov)
+- [contributing](https://mrm.js.org/docs/mrm-task-contributing)
+- [dependabot](https://mrm.js.org/docs/mrm-task-dependabot)
+- [editorconfig](https://mrm.js.org/docs/mrm-task-editorconfig)
+- [eslint](https://mrm.js.org/docs/mrm-task-eslint)
+- [gitignore](https://mrm.js.org/docs/mrm-task-gitignore)
+- [jest](https://mrm.js.org/docs/mrm-task-jest)
+- [license](https://mrm.js.org/docs/mrm-task-license)
+- [lint-staged](https://mrm.js.org/docs/mrm-task-lint-staged)
+- [package](https://mrm.js.org/docs/mrm-task-package)
+- [prettier](https://mrm.js.org/docs/mrm-task-prettier)
+- [readme](https://mrm.js.org/docs/mrm-task-readme)
+- [semantic-release](https://mrm.js.org/docs/mrm-task-semantic-release)
+- [styleguidist](https://mrm.js.org/docs/mrm-task-styleguidist)
+- [stylelint](https://mrm.js.org/docs/mrm-task-stylelint)
+- [travis](https://mrm.js.org/docs/mrm-task-travis)
+- [typescript](https://mrm.js.org/docs/mrm-task-typescript)
+
+[快捷配置](#快捷配置)中的预设采用的就是 [mrm-lint-staged]。
+
+
+
+##### [mrm-lint-staged] 是什么
+
+> **Note:** 现在仅支持 `Prettier, ESLint, Stylelint`；最新支持请参考：[mrm-lint-staged]
+
+
+
+它能做什么：
+
+- 在 `package.json` 中创建一个配置；
+- 设置 `pre-commit Git hook`；
+- 安装依赖项；
+
+此任务将尝试从您的 `npm` 脚本推断扩展。 
+
+例如，如果你有 `lint` 脚本为 `js` 和 `ts` 文件运行 `ESLint`，该任务将添加 `lint-staged` 规则，为相同的扩展运行 `ESLint`。 
+
+如果您手动更改现有规则并再次运行任务，它将覆盖现有规则，但它会尝试保持您的自定义规则。
+
+
+
+常见用法：
+
+```shell
+npm install -g mrm mrm-task-lint-staged
+
+mrm lint-staged
+```
+
+
+
+常见配置项（`lint-staged-rules`）
+
+可以查看 [Mrm docs](https://mrm.js.org/docs/getting-started) 和 [lint-staged docs](https://github.com/okonet/lint-staged/blob/master/readme) 来关注更多细节。
+
+
+
+覆盖和自定义规则。 默认情况下，将尝试通过项目依赖项进行推断。
+
+例如，自定义扩展：
+
+```json
+{
+
+  "lintStagedRules": {
+
+    "eslint": {
+
+      "extensions": ["js", "jsx", "mjs"]
+
+    }
+
+  }
+
+}
+```
+
+
+
+或自定义命令：
+
+```json
+{
+
+  "lintStagedRules": {
+
+    "eslint": {
+
+      "command": "eslint --fix"
+
+    }
+
+  }
+
+}
+```
+
+
+
+或者您可以禁用默认规则之一：
+
+```json
+{
+
+  "lintStagedRules": {
+
+    "prettier": {
+
+      "enabled": false
+
+    }
+
+  }
+
+}
+```
+
+
+
+或者添加自定义规则：
+
+```json
+{
+
+  "lintStagedRules": {
+
+    "jest": {
+
+      "extensions": ["js"],
+
+      "command": "jest --bail --findRelatedTests"
+
+    }
+
+  }
+
+}
+```
+
+
 
 #### 执行多个命令
 
@@ -785,11 +986,11 @@ npx eslint xxx(path)
     {
       "mode": "auto"
     }
-  ],
+  ]
 }
 ```
 
-### prettier插件
+### [prettier] 插件
 
 为什么要安装插件？
 
@@ -822,7 +1023,7 @@ npx prettier --check xxx(path)
   // 设置保存时自动格式化代码
   "editor.formatOnSave": true,
   // 设置vscode的默认格式化是esbenp.prettier-vscode---->也就是vscode插件prettier
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
 ```
 
@@ -891,7 +1092,9 @@ Windows`在换行的时候，同时使用了`回车符CR(carriage-return charact
 3. 配置[prettier]规则
 
    ```json
-   "endOfLine": "auto"
+   {
+    "endOfLine": "auto"
+   }
    ```
 
    这里要注意的是：
@@ -903,14 +1106,17 @@ Windows`在换行的时候，同时使用了`回车符CR(carriage-return charact
    具体为什么不能写在`.prettierrc`的原因，详情请看[集成方案-02](#方案-02)。
 
    ```json
+   {
      "rules": {
        "prettier/prettier": [
          "error",
          {
-           endOfLine: "auto"
+           "endOfLine": "auto"
          }
-       ],
+       ]
      }
+   }
+
    ```
 
 
