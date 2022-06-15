@@ -3300,13 +3300,14 @@ JS 文件（`.js`和`.jsx`）也被包含进来，如果`allowJs`被设置成`tr
 
 在命令行上指定的编译选项会覆盖在`tsconfig.json`文件里的相应选项。
 
-#### @types，typeRoots 和 types
+#### typeRoots 和 types
+
 
 默认所有可见的"`@types`"包会在编译过程中被包含进来。 `node_modules/@types`文件夹下以及它们子文件夹下的所有包都是可见的。 
 
 也就是说，`./node_modules/@types/`，`../node_modules/@types/`和`../../node_modules/@types/`等等。
 
-如果指定了`typeRoots`，只有`typeRoots`下面的包才会被包含进来。 比如：
+而如果你手动设置了`typeRoots`，那么只有`typeRoots`下面的包才会被包含进来。 比如：
 
 ```json
 {
