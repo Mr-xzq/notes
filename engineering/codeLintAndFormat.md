@@ -398,6 +398,9 @@ if (!commitRE.test(commitMsg)) {
    ```json
    {
       "lint-staged": {
+        "*": [
+          "prettier --write --cache --ignore-unknown"
+        ]
        "*.{js,vue,html}": "eslint --cache --fix"
       }
    }
@@ -698,7 +701,7 @@ npx commitizen init cz-conventional-changelog --save-dev --save-exact
 
 ### 解决方案
 
-#### 方案 - 01
+#### 方案-01
 
 既然是两者要求的格式有所冲突，因此我们可以选择直接禁用掉[eslint]与[prettier]冲突相关的规则，如果我们只是靠手写，那太麻烦了。刚好有现成的`eslint-config-xxx`可以完成这个功能。
 
@@ -749,30 +752,12 @@ module.exports = {
 
 这样就会让[eslint]与[prettier]的规则有冲突。如果这里你设置了编辑器（比如[vscode]）的保存自动`eslint fix`和保存自动`prettier --write ./`（用[prettier]格式化代码），那么就会出现反复横跳的一幕。关于具体怎么集成[vscode]和[eslint]和[prettier]，后面细说。
 
-#### 方案 - 02
+#### 方案-02
 
 既然两者要求的格式有冲突，那么我们可不可以将[prettier]的格式化功能集成到[eslint]中来覆盖[eslint]自己的与[prettier]相冲突的代码格式化功能呢？答案自然是可以的，这里需要下载`eslint-plugin-preiiter`插件。
 
 ```bash
 npm install -D eslint-plugin-prettier
-```
-
-然后在[eslint]配置文件中定义`rules`来引用插件中的`rule`，这样就能将[prettier]的格式化功能集成到[eslint]中。
-
-```js
-module.exports = {
-  plugins: [
-    // 'eslint-plugin-prettier', 将prettier整合到eslint中, 作为eslint的一部分调用
-    'prettier',
-  ],
-  extends: [
-    'eslint-recommended',
-  ],
-  rules: {
-    // eslint-plugin-prettier/prettier, 将prettier的规则直接集成到rules中, 让eslint校验代码的时候, 也能校验出prettier格式不对的错误, 这样eslint在fix的时候, 就能按照prettier/prettier来格式化代码, 换句话说, eslint也调用了prettier/prettier来格式化代码。
-    'prettier/prettier': 'error',
-  },
-}
 ```
 
 **优化写法：**
@@ -784,26 +769,31 @@ module.exports = {
     'prettier',
   ],
   extends: [
-    'eslint-recommended',
     // 这里也有可能出现eslint和prettier冲突的规则, 要记住放在后面, 因此需要配置一下
     'plugin:prettier/recommended',
   ],
 }
 ```
 
-其中`plugin:prettier/recommended`其实是精简写法，其实我们知道，`extends`其实是继承配置（可以理解为继承别的`.eslintrc.js`）。
-
-由于这个`plugin`里没有自己的`eslint-config-prettier`，因此这里需要我们本地`npm install eslint-config-prettier -D`。
+其中`plugin:prettier/recommended`其实是精简写法，其实我们知道，`extends`其实是继承配置（可以理解为继承别的`.eslintrc.js`），继承的配置如下：
 
 ```js
 module.exports = {
   extends: [
-    // eslint-config-prettier
+    // eslint-config-prettier, 禁用 eslint 和 prettier 冲突的规则
     'prettier',
   ],
+  // plugins 可写可不写, 它只是用作标识, 只要你将对应的依赖安装了即可
   plugins: ['prettier'],
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': [
+      'error',
+      {},
+      {
+        // eslint-plugin-prettier 默认会去读取本地的 prettier 配置文件
+        usePrettierrc: true,
+      }
+    ],
     // 下面两个规则如果按照 prettier/prettier 和 eslint 自带的, 可能会出现问题
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off',
@@ -811,9 +801,13 @@ module.exports = {
 }
 ```
 
+注意：`eslint-plugin-prettier`自己并不包含`eslint-config-prettier`，因此这里需要我们本地`npm install eslint-config-prettier -D`。
+
+
+
 **如果要自定义一些规则：**
 
-通过[eslint]可以给`eslint-plugin-prettier/prettier`传递一些选项，但是不建议这样做，因为[vscode]的[prettier]插件是读取的本地的`.prettierrc.js`配置文件。
+通过[eslint]可以给`eslint-plugin-prettier/prettier`传递一些选项：
 
 ```js
 // 不建议的做法
@@ -825,38 +819,25 @@ module.exports = {
 }
 
 // 建议的做法
+// usePrettierrc 默认值为 true, 也就是默认会读取本地的 prettier 配置文件
 // .prettierrc.js
 module.exports = {
   singleQuote: true,
 }
-
-// 但是发现官方^3.4.1, 也就是我用的版本可能有 bug, 理论上'prettier/prettier'的usePrettierrc: true 是自动开启的,
-// 也就是他会自动去读取本地的配置文件, 但是实验之后发现没有用, 依旧没有让 eslint 和我本地的配置文件同步
-
-module.exports = {
-  rules: {
-    'prettier/prettier': [
-      'error',
-      {},
-      {
-        // 是否读取本地配置文件, 默认就是 true, 但是没有生效, 不知道为什么
-        usePrettierrc: true,
-      },
-    ],
-  },
-}
 ```
 
-因此我们还是只有采用上面 不建议的做法（在[eslint]中去向`prettier/prettier`传递一些选项规则）。
+但是这里要注意的是，真实的`eslint`能够通过`usePrettierrc`识别到`.prettierrc`配置文件，比如：`npx eslint --fix ...`并不会出现`prettier/prettier`规则错误，但是`IDE`的`eslint`插件却不能，因此`IDE`会出现红色警告。具体可以参考：[IDE eslint 插件局限性](#eslint-插件和-eslint-plugin-prettier)。
+
+
 
 #### 总结
 
-这里采用**方案 - 02**
+这里采用**方案-01**
 
 首先下载依赖
 
 ```bash
-npm install -D eslint prettier eslint-config-prettier eslint-plugin-prettier
+npm install -D eslint prettier eslint-config-prettier
 ```
 
 然后对[eslint]配置文件`.eslintrc.js`进行配置
@@ -923,6 +904,8 @@ node_modules/*
    ```
 
    具体可以看[prettier读取配置优先级](#读取配置优先级)
+   
+3. `eslint-plugin-prettier`插件的默认读取`prettier`配置文件实际对于`eslint`是生效的，但是一些`IDE`继承的`eslint`插件不能很好的识别；
 
 ## 整合到 vscode
 
@@ -1097,28 +1080,88 @@ Windows`在换行的时候，同时使用了`回车符CR(carriage-return charact
    }
    ```
 
-   这里要注意的是：
 
-   如果当前我们采用的是[集成方案-01](#方案-01)，也就是通过安装`eslint-config-prettier`配置，来关闭[eslint]中与[prettier]冲突的配置的方案来集成`eslint + prettier`的话，那么可以直接将这个配置写在`.prettierrc`中。
 
-   但是如果采用的是[集成方案-02](#方案-02)，也就是通过安装`eslint-plugin-prettier`插件，来将`prettier/prettier`直接加入到[eslint]的`rules`中，让[prettier]成为[eslint]规则的一部分，这里就需要直接在[eslint]配置文件中相关配置了。
-   
-   具体为什么不能写在`.prettierrc`的原因，详情请看[集成方案-02](#方案-02)。
 
-   ```json
-   {
-     "rules": {
-       "prettier/prettier": [
-         "error",
-         {
-           "endOfLine": "auto"
-         }
-       ]
-     }
-   }
+#### eslint 插件和 eslint-plugin-prettier
 
-   ```
+当我们将`prettier`具体规则写到单独的配置文件中，让`eslint-plugin-prettier`自动读取时，
 
+对于`npx eslint --fix path`是会生效的。
+
+但是这里有一个问题，对于一些`IDE`自带的辅助插件却不会生效，比如`VSCode, Webstorm`对应的`eslint`插件都无法读取到，因此依旧会出现红色的错误警告。
+
+这不是我们配置的问题，而是插件的问题。
+
+这里有一个折衷的解决办法，就是直接在`eslint`的`rules`中书写`prettier/prettier`规则：
+
+```js
+// 不建议的做法
+// .eslintrc.js
+module.exports = {
+  rules: {
+    'prettier/prettier': ['error', { singleQuote: true }],
+  },
+}
+```
+
+这样`eslint`和那些`IDE`的`eslint`插件都能很好的识别，但是也有一个局限性：
+
+在`eslint`中书写`prettier`的规则只能将一些简单的规则写进去，对于`prettier`的一些解析或者其他相关特殊的规则写进去是不会生效的，比如，当你将`prettier`集成到`eslint`中的`rules`时，可能会出现`Parsing error: Unexpected token prettier/prettier caused by "<!DOCTYPE html>" `，无法对`html`进行正常的解析，这时你需要书写：
+
+```js
+// .prettierrc
+module.exports = {
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
+}
+```
+
+当你输入`npx eslint --fix index.html`时你会发现错误已经解决，因为`eslint-plugin-prettier`是会自动读取`prettier`配置文件的，但是你会发现由于`IDE`的`eslint`插件无法识别这种情况会导致`IDE`上依旧是红色警告。
+
+![prettier parse error](https://cdn.jsdelivr.net/gh/Mr-xzq/PicBed/img/20220731/09:46:38-prettier%20parse%20error.png)
+
+参考：
+
+https://blog.csdn.net/lty1010/article/details/124611184
+
+https://prettier.io/docs/en/options.html#parser
+
+但是如果你写在`eslint`的里面：
+
+```js
+// .eslintrc.js
+module.exports = {
+  rules: {
+    'prettier/prettier': [
+      'error', 
+      { 
+        singleQuote: true,
+        "overrides": [
+          {
+            "files": "*.html",
+            "options": {
+              "parser": "html"
+            }
+          }
+        ]
+      }
+    ],
+  },
+}
+```
+
+你会发现`eslint-plugin-prettier`，也就是`eslint`根本无法识别这里的`overrides`。
+
+`npx eslint --fix index.html`会报错，`IDE`的`eslint`插件同样会报错。
+
+因此集成`eslint, prettier`方案推荐：[`eslint-config-prettier`](#方案-01)，不推荐[`eslint-plugin-prettier`](#方案-02)。
 
 ## 参考
 
