@@ -2928,13 +2928,13 @@ var colors = [0 /* Green */, 1 /* White */]
 
 | Declaration Type | Namespace | Type | Value |
 | ---------------- | --------- | ---- | ----- |
-| Namespace        | X         |      | X     |
-| Class            |           | X    | X     |
-| Enum             |           | X    | X     |
-| Interface        |           | X    |       |
-| Type Alias       |           | X    |       |
-| Function         |           |      | X     |
-| Variable         |           |      | X     |
+| Namespace        | √         |      | √     |
+| Class            |           | √    | √     |
+| Enum             |           | √    | √     |
+| Interface        |           | √    |       |
+| Type Alias       |           | √    |       |
+| Function         |           |      | √     |
+| Variable         |           |      | √     |
 
 声明命名空间，值算做一类，声明类型（`interface, type`）算作另外一类，它们的异同点：
 

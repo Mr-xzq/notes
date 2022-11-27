@@ -10,7 +10,7 @@ const config: UserConfig<DefaultTheme.Config> = {
   description: metaData.description,
   head,
   themeConfig,
-  srcExclude: ['README.md'],
+  srcExclude: ['README.md', 'todo.md'],
   markdown: {
     config(md) {
       md.use(mdRenderFilename)
