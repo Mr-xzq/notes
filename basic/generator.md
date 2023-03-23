@@ -184,7 +184,7 @@ console.log('funcDemo2Exec.next(): ', funcDemo2Exec.next())
 
 > `Symbol.iterator`是一个常量值，类型是 `Symbol` 类型。
 >
-> 任意一个对象，只要具有`obj[Symbol.iterator] === Generator`，那么它就可以被迭代。
+> 下文中遍历器对象和迭代器对象指的是同一个意思。
 >
 > 常见的有四种操作会隐式的用到迭代：
 >
@@ -195,6 +195,8 @@ console.log('funcDemo2Exec.next(): ', funcDemo2Exec.next())
 > 3. `let [ a, b, c ] = obj ----> 解构赋值`；
 > 
 > 4. `for(let xxx of obj) {}`；
+>
+> 5. ...
 >
 > 注意的是：
 >
@@ -210,19 +212,37 @@ let obj = { name: 'xzq', age: 18 }
 // 这里我们知道 obj 上没有 [Symbol.iterator] 对应的方法, 因此 直接 返回 空数组
 // console.log('Array.from(obj): ', Array.from(obj)); // []
 
-obj[Symbol.iterator] = function* () {
-  yield 1
-  yield 2
-  return 3
+// Generator 生成器函数
+// obj[Symbol.iterator] = function* () {
+//   yield 1
+//   yield 2
+//   return 3
+// }
+
+// Iterator 遍历器对象是一个具有 next(必须得有), return(非必须), throw(非必须) 方法的对象，Generator 生成器函数得到的就是一个 Iterator 遍历器对象
+// 也就是说 Generator 生成器函数可以看做得到 Iterator 遍历器对象的一种简化写法
+obj[Symbol.iterator] = function () {
+  const arr = [1, 2]
+  let nextIndex = 0
+  return {
+    next() {
+      return nextIndex < arr.length ? { value: arr[nextIndex++] } : { done: true }
+    },
+    return() {
+       // ... 
+    },
+    throw() {
+       // ...
+    }
+  }
 }
 
-// 这里忽略的最后的 3, 因为此时的 done: true
 // console.log('Array.from(obj): ', Array.from(obj)); // [1, 2]
 // console.log([...obj]) // [1, 2]
 // let [ a, b ] = obj // a: 1, b: 2
 ```
 
-### 调用遍历器对象的 Symbol.iterator 属性得到的遍历器对象等于该遍历器对象自身
+### Iterator 遍历器对象的[Symbol.iterator]函数返回值等于该遍历器对象
 
 ```js
 function* demoFunc4() {
@@ -230,21 +250,28 @@ function* demoFunc4() {
   yield 2
 }
 
-// 调用定义的 Generator 函数得到遍历器对象 demoFunc4Exec
-const demoFunc4Exec = demoFunc4()
-// demoFunc4Exec 的 Symbol.iterator 属性也是一个 Generator 函数
-// 调用其得到一个遍历器对象 selfDemoFunc4Exec
-const selfDemoFunc4Exec = demoFunc4Exec[Symbol.iterator]()
-// demoFunc4Exec 和 selfDemoFunc4Exec 等同
+const demoFunc4Exec = demoFunc4()  // demoFunc4Exec: 遍历器对象
+const selfDemoFunc4Exec = demoFunc4Exec[Symbol.iterator]() // selfDemoFunc4Exec: 遍历器对象
 console.log(selfDemoFunc4Exec === demoFunc4Exec) // true
 
-// 这里要注意的是, 可能是因为语法层面的限制, 如果你用下面的写法得到的就是 false
-// 很奇怪, 不知道为什么
-// 先得到 Generator 函数
-// const selfDemoFunc4 = demoFunc4Exec[Symbol.iterator]
-// 然后通过 Generator 函数得到遍历器对象
-// const selfDemoFunc4Exec = selfDemoFunc4.call(selfDemoFunc4)
-// console.log(selfDemoFunc4Exec === demoFunc4Exec) // false
+
+// 这就意味着, 你同样可以迭代遍历器对象, 因为它同样具有[Symbol.iterator]
+for(let res of demoFunc4()) {
+  console.log(res) // 1, 2
+}
+```
+
+### for...of 和 Iterator 迭代器的关系
+
+```js
+function* demoFunc4() {
+  yield 1
+  yield 2
+}
+
+const demoFunc4Exec = demoFunc4()  // demoFunc4Exec: 遍历器对象
+const selfDemoFunc4Exec = demoFunc4Exec[Symbol.iterator]() // selfDemoFunc4Exec: 遍历器对象
+console.log(selfDemoFunc4Exec === demoFunc4Exec) // true
 
 
 // 这就意味着, 你同样可以迭代遍历器对象, 因为它同样具有[Symbol.iterator]

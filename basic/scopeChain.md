@@ -354,7 +354,7 @@ function foo() {
 
 #### 函数执行期上下文
 
-对于全局执行上下文而言，它对应的`VO`又被称之为`AO --> Activation Object`。
+对于函数执行期执行上下文而言，它对应的`VO`又被称之为`AO --> Activation Object`。
 
 对函数进行预编译的过程：
 

@@ -9,6 +9,7 @@ const config: UserConfig<DefaultTheme.Config> = {
   title: 'Xzq Notes',
   description: metaData.description,
   head,
+  lang: 'zh-CN',
   themeConfig,
   srcExclude: ['README.md', 'todo.md'],
   markdown: {

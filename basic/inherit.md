@@ -338,8 +338,20 @@ function _extends(Son, Parent) {
   // 1. 通过一个暂时的中间对象将 Son.prototype 和 Parent.prototype 关联起来
 
   // function F() {}
-  // const f = new F()
+
+  /* 
+    我们回忆一下 new 的过程:
+      1. 创建新对象 obj: {}
+      2. 将 obj.__proto__ 赋值为构造函数 F 的 prototype
+      3. 执行 const res = F.call(obj), 如果 res 的类型为引用类型, 那么直接返回 res, 否则返回 obj
+
+    关键就是第二步, 这里我们的目的是要将 f 和 Parent 关联起来
+    如果你这么写了:
+      const f = new F()  那么它创建的实例对象 obj.__proto__ 指向的是原来 F.prototype 指向的那块空间
+      F.prototype = Parent.prototype 然后在这里我们将 F.prototype 指向另外的地方并不会改变 obj.__proto__ 的错误指向了
+  */
   // F.prototype = Parent.prototype
+  // const f = new F()
   // Son.prototype = f
 
   // 简写成如下
