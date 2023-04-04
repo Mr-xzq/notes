@@ -7,27 +7,46 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node_version: [16, 18]
+        
     permissions:
       pages: write
       id-token: write
+      
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+      
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+          
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+          
+      - name: Set node version to ${{ matrix.node_version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: npm
-      - run: npm ci
+          node-version: ${{ matrix.node_version }}
+          cache: pnpm
+          
+      - name: Install deps
+        run: pnpm install
+      
       - name: Build
         run: npm run build
+        
       - uses: actions/configure-pages@v2
+      
       - uses: actions/upload-pages-artifact@v1
         with:
           path: .vitepress/dist
+          
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v1
