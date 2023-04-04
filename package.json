@@ -3,7 +3,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vitepress dev",
-    "build": "vue-tsc --noEmit && vitepress build",
+    "build": "vue-tsc --noEmit && vitepress build && node scripts/copyDist",
     "serve": "vitepress serve",
     "lint": "eslint --ext .js,.ts,.md,.vue ./",
     "lint:fix": "eslint --fix --ext .js,.ts,.md,.vue ./",
@@ -53,7 +53,9 @@
     "vite-plugin-windicss": "^1.4.7",
     "vitepress": "^0.19.1",
     "vue-tsc": "^0.3.0",
-    "windicss-analysis": "^0.3.4"
+    "windicss-analysis": "^0.3.4",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.1"
   },
   "engines": {
     "node": ">=16.0.0"
