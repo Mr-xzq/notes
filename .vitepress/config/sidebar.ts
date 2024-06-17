@@ -18,9 +18,9 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '遍历对象属性常用方法', link: '/basic/traverseObjectProperty' },
         { text: '转化为数字类型的常用方法', link: '/basic/convert2Number' },
         { text: '原型链', link: '/basic/prototypeChain' },
+        { text: '深入 this', link: '/basic/this' },
         { text: '继承', link: '/basic/inherit' },
         { text: '作用域(链),执行期上下文(栈),变量提升,闭包', link: '/basic/scopeChain' },
-        { text: '深入 this', link: '/basic/this' },
         { text: '运算符优先级', link: '/basic/operatorPriority' },
       ]
     },
@@ -42,6 +42,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '深入理解响应式', link: '/vueLearn/reactive' },
         { text: '深入 render-mount-patch 流程', link: '/vueLearn/render_h_mount_patch' },
         { text: '深入异步更新', link: '/vueLearn/async_update' },
+        { text: 'jsx/render 使用手册', link: '/vueLearn/jsx_or_render_usage' },
       ],
     },
   ],
