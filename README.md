@@ -4,8 +4,6 @@
 
 This is the documentation website for [xzq notes].
 
-https://notes-z8e7-xzqs-projects-02c17255.vercel.app
-
 ## Development
 
 ```bash
