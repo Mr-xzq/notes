@@ -1,10 +1,10 @@
-[xzq notes]: https://notes-xzq.vercel.app/
+[xzq notes]: https://notes-z8e7-xzqs-projects-02c17255.vercel.app
 
 # Xzq Notes Documentation
 
 This is the documentation website for [xzq notes].
 
-https://notes-xzq.vercel.app/
+https://notes-z8e7-xzqs-projects-02c17255.vercel.app
 
 ## Development
 
