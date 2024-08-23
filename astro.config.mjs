@@ -4,6 +4,7 @@ import starlightImageZoom from "starlight-image-zoom";
 
 // https://astro.build/config
 export default defineConfig({
+  base: process.env.DEPLOY_BASE ?? "/",
   integrations: [
     starlight({
       plugins: [starlightImageZoom()],
