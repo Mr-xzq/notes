@@ -2,9 +2,31 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightImageZoom from "starlight-image-zoom";
 
+const deployUrlMap = {
+  github: "https://mr-xzq.github.io/notes/",
+  vercel: "https://notes-z8e7-xzqs-projects-02c17255.vercel.app",
+};
+
+const deployBase2Site = {
+  // vercel or other
+  "/": deployUrlMap.vercel,
+  // github pages, because it must contain subpath
+  "/notes/": deployUrlMap.github,
+};
+
+const currentSite =
+  deployBase2Site[process.env.DEPLOY_BASE] || deployUrlMap.github;
+const currentBase = process.env.DEPLOY_BASE ?? "/";
+
+// console.log({
+//   currentSite,
+//   DEPLOY_BASE: process.env.DEPLOY_BASE,
+// });
+
 // https://astro.build/config
 export default defineConfig({
-  base: process.env.DEPLOY_BASE ?? "/",
+  site: currentSite,
+  base: currentBase,
   integrations: [
     starlight({
       plugins: [starlightImageZoom()],
