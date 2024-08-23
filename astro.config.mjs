@@ -16,6 +16,9 @@ export default defineConfig({
         // src: "./src/assets/hero-logo.svg",
         src: "/public/logo.svg",
       },
+      components: {
+        Hero: "@/components/Hero.astro",
+      },
       favicon: "/logo.svg",
       sidebar: [
         {
