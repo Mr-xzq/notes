@@ -1,11 +1,18 @@
 ---
 import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/Hero.astro";
+import { removeDuplicateSlash } from "@/utils/index.ts";
 
 const frontmatter = Astro.props.entry.data;
 
-const actions = frontmatter.hero.actions;
+const actions = frontmatter.hero?.actions ?? [];
+
+// add BASE_URL before action link
+for (const action of actions) {
+  if (action.link) {
+    action.link = removeDuplicateSlash(import.meta.env.BASE_URL + action.link);
+  }
+}
 ---
 
-<pre>{JSON.stringify(actions)}</pre>
 <Default {...Astro.props}><slot /></Default>
