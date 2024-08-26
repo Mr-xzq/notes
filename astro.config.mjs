@@ -108,7 +108,7 @@ export default defineConfig({
       ],
       lastUpdated: true,
       editLink: {
-        baseUrl: "https://github.com/Mr-xzq/notes/edit/master/docs/",
+        baseUrl: "https://github.com/Mr-xzq/notes/edit/master/",
       },
       pagination: true,
     }),
