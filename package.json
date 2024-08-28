@@ -11,7 +11,8 @@
     "build:path:root": "cross-env DEPLOY_BASE=/ npm run build",
     "build:path:notes": "cross-env DEPLOY_BASE=/notes/ npm run build",
     "addDocTitle": "node ./scripts/updateMdFrontmatter.mjs --type addTitle --scan-pattern './src/content/docs/**/*.md' --base-path cwd",
-    "removeDocFrontmatter": "node ./scripts/updateMdFrontmatter.mjs --type removeFrontmatter --scan-pattern './src/content/docs/**/*.md' --base-path cwd"
+    "removeDocFrontmatter": "node ./scripts/updateMdFrontmatter.mjs --type removeFrontmatter --scan-pattern './src/content/docs/**/*.md' --base-path cwd",
+    "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.26.1",
@@ -26,6 +27,7 @@
     "cross-env": "^7.0.3",
     "globby": "^14.0.2",
     "js-yaml": "^4.1.0",
+    "lint-staged": "^15.2.9",
     "lodash-es": "^4.17.21",
     "magic-string": "^0.30.11",
     "minimist": "^1.2.8",
@@ -34,8 +36,15 @@
     "remark-frontmatter": "^5.0.0",
     "remark-parse": "^11.0.0",
     "remark-stringify": "^11.0.0",
+    "simple-git-hooks": "^2.11.1",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "pnpm run format"
   },
   "engines": {
     "node": ">=20.0.0"
