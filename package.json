@@ -3,16 +3,15 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "prepare": "npx simple-git-hooks",
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "format": "prettier --cache --write .",
+    "format": "prettier . --cache --write",
     "build:path:root": "cross-env DEPLOY_BASE=/ npm run build",
     "build:path:notes": "cross-env DEPLOY_BASE=/notes/ npm run build",
     "addDocTitle": "node ./scripts/updateMdFrontmatter.mjs --type addTitle --scan-pattern './src/content/docs/**/*.md' --base-path cwd",
-    "removeDocFrontmatter": "node ./scripts/updateMdFrontmatter.mjs --type removeFrontmatter --scan-pattern './src/content/docs/**/*.md' --base-path cwd",
-    "postinstall": "npx simple-git-hooks"
+    "removeDocFrontmatter": "node ./scripts/updateMdFrontmatter.mjs --type removeFrontmatter --scan-pattern './src/content/docs/**/*.md' --base-path cwd"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.28.3",
@@ -31,7 +30,7 @@
     "lodash-es": "^4.17.21",
     "magic-string": "^0.30.11",
     "minimist": "^1.2.8",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
     "remark-frontmatter": "^5.0.0",
     "remark-parse": "^11.0.0",
@@ -44,7 +43,7 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "pnpm run format"
+    "*": "prettier . --write"
   },
   "engines": {
     "node": ">=20.0.0"
