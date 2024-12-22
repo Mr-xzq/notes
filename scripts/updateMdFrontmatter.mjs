@@ -1,4 +1,4 @@
-import fsPromise from "fs/promises";
+import fs from "fs";
 import { globby } from "globby";
 import yaml from "js-yaml";
 import { merge, omit } from "lodash-es";
@@ -125,10 +125,11 @@ const updateByPattern = async ({
   basePath = defaultUpdateByPatternOptions.basePath,
 } = defaultUpdateByPatternOptions) => {
   pathPattern = slash(path.resolve(basePath, pathPattern));
+  // TODO globby 如何结合 memfs 和 vitest 的机制来测试
   const files = await globby(pathPattern);
   for (const filePath of files) {
     try {
-      const content = await fsPromise.readFile(filePath, "utf8");
+      const content = await fs.promises.readFile(filePath, "utf8");
 
       let updatedContent;
       if (type === "addTitleToFrontmatter") {
@@ -144,7 +145,7 @@ const updateByPattern = async ({
 
       if (content === updatedContent) continue;
 
-      await fsPromise.writeFile(filePath, updatedContent, "utf8");
+      await fs.promises.writeFile(filePath, updatedContent, "utf8");
       console.log(`Updated: ${filePath}`);
     } catch (err) {
       console.error(`Error updating ${filePath}:`, err);
@@ -199,3 +200,12 @@ const main = async () => {
 };
 
 main();
+
+// 在文件末尾添加导出
+export {
+  addTitleToFrontmatter,
+  removeFrontmatter,
+  updateByPattern,
+  getAstFromMd,
+  getFirstTitleByMdAstTree,
+};

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "prepare": "npx simple-git-hooks",
+    "test": "vitest",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -23,12 +24,14 @@
     "@types/js-yaml": "^4.0.9",
     "@types/lodash-es": "^4.17.12",
     "@types/minimist": "^1.2.5",
+    "@vitest/coverage-v8": "2.1.8",
     "cross-env": "^7.0.3",
     "globby": "^14.0.2",
     "js-yaml": "^4.1.0",
     "lint-staged": "^15.2.11",
     "lodash-es": "^4.17.21",
     "magic-string": "^0.30.17",
+    "memfs": "^4.15.1",
     "minimist": "^1.2.8",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
@@ -37,7 +40,8 @@
     "remark-stringify": "^11.0.0",
     "simple-git-hooks": "^2.11.1",
     "unified": "^11.0.5",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "vitest": "^2.1.8"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
