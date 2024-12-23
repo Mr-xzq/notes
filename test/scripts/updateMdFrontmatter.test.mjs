@@ -2,7 +2,11 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import path from "path";
 import { fileURLToPath } from "url";
 import { fs, vol } from "memfs";
-import { updateByPattern } from "scripts/updateMdFrontmatter.mjs";
+import {
+  updateByPattern,
+  getAstFromMd,
+  getFirstTitleByMdAstTree,
+} from "scripts/updateMdFrontmatter.mjs";
 
 /**
  *
@@ -14,6 +18,8 @@ import { updateByPattern } from "scripts/updateMdFrontmatter.mjs";
  */
 // __mocks__/fs.cjs
 vi.mock("node:fs");
+// __mocks__/globby.mjs
+vi.mock("globby");
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TEST_DIR = path.join(__dirname, "test-files");
@@ -169,7 +175,6 @@ describe("updateByPattern", () => {
   });
 });
 
-// 添加对其他导出函数的测试
 describe("getFirstTitleByMdAstTree", () => {
   it("应该正确提取第一个一级标题", async () => {
     const content = "# 一级标题\n## 二级标题\n# 另一个一级标题";

@@ -20,16 +20,24 @@ const getAstFromMd = (content) => {
 
 const getFirstTitleByMdAstTree = (astTree) => {
   return new Promise((resolve) => {
+    let foundTitle = false;
+
     // 提取 md 中的 heading
     visit(astTree, "heading", (node) => {
       // 只获取第一个 heading
       if (node.depth === 1) {
+        foundTitle = true;
         resolve(node.children.map((child) => child.value).join(""));
         return EXIT;
       } else {
         return CONTINUE;
       }
     });
+
+    // 如果遍历完成后没有找到标题，返回 undefined
+    if (!foundTitle) {
+      resolve();
+    }
   });
 };
 
@@ -125,7 +133,7 @@ const updateByPattern = async ({
   basePath = defaultUpdateByPatternOptions.basePath,
 } = defaultUpdateByPatternOptions) => {
   pathPattern = slash(path.resolve(basePath, pathPattern));
-  // TODO globby 如何结合 memfs 和 vitest 的机制来测试
+  // globby 结合 memfs 和 vitest 的机制来测试
   const files = await globby(pathPattern);
   for (const filePath of files) {
     try {

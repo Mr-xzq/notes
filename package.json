@@ -5,6 +5,7 @@
   "scripts": {
     "prepare": "npx simple-git-hooks",
     "test": "vitest",
+    "test:coverage": "vitest --coverage",
     "dev": "astro dev --port 3101",
     "build": "astro build",
     "preview": "astro preview",

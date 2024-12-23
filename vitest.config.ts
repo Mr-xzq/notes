@@ -1,5 +1,4 @@
 import { defineConfig } from "vitest/config";
-import { fileURLToPath } from "url";
 
 export default defineConfig({
   test: {
@@ -15,5 +14,9 @@ export default defineConfig({
     //   },
     // ],
     include: ["test/**/*.{test,spec}.?(c|m)[jt]s?(x)"],
+    coverage: {
+      // https://cn.vitest.dev/config/#coverage-include
+      include: ["scripts/**/*.?(c|m)[jt]s"],
+    },
   },
 });
