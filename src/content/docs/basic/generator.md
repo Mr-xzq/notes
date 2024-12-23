@@ -877,8 +877,8 @@ function runByPromise(generator) {
 
 ## 参考链接
 
-[ES6-Generator]
+[ES6-Generator][]
 
-[ES6-Generator-Async]
+[ES6-Generator-Async][]
 
 [Iterator 和 for...of 循环][ES6-Iterator-for...of]

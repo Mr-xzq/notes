@@ -70,7 +70,7 @@ fsPromise
 
 ## Generator + yield
 
-> [Generator] 函数是 `ES6` 提供的一种异步编程解决方案，语法行为与传统函数完全不同。
+> [Generator][] 函数是 `ES6` 提供的一种异步编程解决方案，语法行为与传统函数完全不同。
 
 ```js
 function* generatorReadFile() {
@@ -103,13 +103,13 @@ runByPromise(generatorReadFile);
 
 虽说后面的自动执行可以封装起来，在用的地方直接用就行，但是强依赖于自动执行。
 
-并且`function* fnName`的 [Generator] 的写法总感觉有点不太自由。
+并且`function* fnName`的 [Generator][] 的写法总感觉有点不太自由。
 
 ## async + await
 
 > `ES2017` 标准引入了 `async` 函数，使得异步操作变得更加方便。
 >
-> `async` 函数是什么？一句话，它就是 [Generator] 函数的语法糖。
+> `async` 函数是什么？一句话，它就是 [Generator][] 函数的语法糖。
 
 ```js
 async function asyncReadFile() {
@@ -134,7 +134,7 @@ async function asyncReadFile() {
 
 > `async, await`就是 `Generator + yield` 的语法糖。
 >
-> `async`函数的实现原理，就是将 [Generator] 函数和 [Generator 自动执行]，包装在一个函数里。
+> `async`函数的实现原理，就是将 [Generator][] 函数和 [Generator 自动执行][]，包装在一个函数里。
 
 ```js
 async function fn(args) {
@@ -154,7 +154,7 @@ function fn(args) {
 
 所有的`async`函数都可以写成上面的第二种形式，其中的`coAsync`函数就是 [自动执行器][Generator 自动执行]。
 
-下面给出`coAsync`函数的实现，也就是 [Generator] 的 [自动执行器][Generator 自动执行]（自动执行到 [Generator] 终止）。
+下面给出`coAsync`函数的实现，也就是 [Generator][] 的 [自动执行器][Generator 自动执行]（自动执行到 [Generator][] 终止）。
 
 ```js
 function coAsync(genF) {
