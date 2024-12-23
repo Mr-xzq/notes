@@ -122,16 +122,28 @@ const removeFrontmatter = async (content) => {
   }
 };
 
-const defaultUpdateByPatternOptions = {
+// 定义统一的默认配置
+const DEFAULT_CONFIG = {
   type: "addTitleToFrontmatter",
   pathPattern: "./example/*.md",
-  basePath: process.cwd(),
+  // 将 basePath: process.cwd() 改为 getter，延迟执行，不然执行时机是在模块加载时
+  // 我们希望测试用例中能够正确拦截 process.cwd()，所以需要延迟执行
+  get basePath() {
+    return process.cwd();
+  },
+  // CLI 参数映射
+  cliDefaults: {
+    type: "addTitle",
+    "scan-pattern": "./example/*.md",
+    "base-path": "cwd",
+  },
 };
+
 const updateByPattern = async ({
-  type = defaultUpdateByPatternOptions.type,
-  pathPattern = defaultUpdateByPatternOptions.pathPattern,
-  basePath = defaultUpdateByPatternOptions.basePath,
-} = defaultUpdateByPatternOptions) => {
+  type = DEFAULT_CONFIG.type,
+  pathPattern = DEFAULT_CONFIG.pathPattern,
+  basePath = DEFAULT_CONFIG.basePath,
+} = DEFAULT_CONFIG) => {
   pathPattern = slash(path.resolve(basePath, pathPattern));
   // globby 结合 memfs 和 vitest 的机制来测试
   const files = await globby(pathPattern);
@@ -181,14 +193,8 @@ const main = async () => {
     test: __dirname,
   };
 
-  const defaultOptions = {
-    type: "addTitle", // 'addTitle' | 'removeFrontmatter'
-    "scan-pattern": "./example/*.md",
-    "base-path": "cwd",
-  };
-
   const argsObj = parseArgs();
-  const options = merge(defaultOptions, argsObj);
+  const options = merge(DEFAULT_CONFIG.cliDefaults, argsObj);
   console.log("args-options:", options);
 
   if (!["addTitle", "removeFrontmatter"].includes(options.type)) {
@@ -216,4 +222,5 @@ export {
   updateByPattern,
   getAstFromMd,
   getFirstTitleByMdAstTree,
+  main,
 };
