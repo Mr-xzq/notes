@@ -1,4 +1,4 @@
-[xzq notes]: https://notes-z8e7-xzqs-projects-02c17255.vercel.app
+[xzq notes]: https://mr-xzq.github.io/notes/
 
 # Xzq Notes Documentation
 
