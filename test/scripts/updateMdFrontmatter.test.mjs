@@ -26,9 +26,12 @@ vi.mock("globby");
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TEST_DIR = path.join(__dirname, "test-files");
 
-// https://cn.vitest.dev/api/#setup-and-teardown
-// beforeEach 适用于不同的上下文，在当前上下文中的每个测试运行前调用，比如现在是所有测试运行前调���
-// 如果在 describe 中使用，则是在 describe 中的每个测试运行前调用
+/**
+ * https://cn.vitest.dev/api/#setup-and-teardown
+ * beforeEach 适用于不同的上下文，会在当前上下文中的每个测试运行前调用；
+ * 比如现在就是在所有测试运行前调用；
+ * 如果是其他的上下文，比如如果是在 describe 中使用，则是在 describe 中的每个测试运行前调用；
+ */
 beforeEach(async () => {
   vi.spyOn(process, "cwd").mockReturnValue(TEST_DIR);
   // 创建测试目录
