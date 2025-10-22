@@ -31,9 +31,13 @@ export default defineConfig({
     starlight({
       plugins: [starlightImageZoom()],
       title: "Xzq Notes",
-      social: {
-        github: "https://github.com/Mr-xzq/notes",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/Mr-xzq/notes",
+        },
+      ],
       logo: {
         // src: "./src/assets/hero-logo.svg",
         src: "/public/logo.svg",

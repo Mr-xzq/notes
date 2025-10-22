@@ -16,8 +16,8 @@
     "removeDocFrontmatter": "node ./scripts/updateMdFrontmatter.mjs --type removeFrontmatter --scan-pattern './src/content/docs/**/*.md' --base-path cwd"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.32.1",
-    "astro": "^5.3.1",
+    "@astrojs/starlight": "^0.36.1",
+    "astro": "^5.14.8",
     "sharp": "^0.32.6",
     "starlight-image-zoom": "^0.11.1"
   },
