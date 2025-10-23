@@ -1,6 +1,7 @@
-import { defineConfig } from "vitest/config";
+/// <reference types="vitest" />
+import { getViteConfig } from "astro/config";
 
-export default defineConfig({
+export default getViteConfig({
   test: {
     // https://docs.astro.build/en/guides/imports/#aliases
     // alias: [
@@ -15,6 +16,7 @@ export default defineConfig({
     // ],
     include: ["test/**/*.{test,spec}.?(c|m)[jt]s?(x)"],
     coverage: {
+      provider: "v8",
       // https://cn.vitest.dev/config/#coverage-include
       include: ["scripts/**/*.?(c|m)[jt]s"],
     },
