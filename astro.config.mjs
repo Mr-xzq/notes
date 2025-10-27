@@ -106,6 +106,10 @@ export default defineConfig({
               label: "深入 render-mount-patch 流程",
               slug: "vue-learn/render-h-mount-patch",
             },
+            {
+              label: "render-jsx 探索与实践",
+              slug: "vue-learn/render-jsx-practice",
+            },
             { label: "深入异步更新", slug: "vue-learn/async-update" },
           ],
         },

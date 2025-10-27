@@ -13,8 +13,8 @@
     "format": "prettier . --cache --write",
     "build:path:root": "cross-env DEPLOY_BASE=/ npm run build",
     "build:path:notes": "cross-env DEPLOY_BASE=/notes/ npm run build",
-    "addDocTitle": "node ./scripts/updateMdFrontmatter.mjs --type addTitle --scan-pattern './src/content/docs/**/*.md' --base-path cwd",
-    "removeDocFrontmatter": "node ./scripts/updateMdFrontmatter.mjs --type removeFrontmatter --scan-pattern './src/content/docs/**/*.md' --base-path cwd"
+    "addDocTitle": "node ./scripts/updateMdFrontmatter.mjs --type addTitle --scan-pattern \"./src/content/docs/**/*.md\" --base-path cwd",
+    "removeDocFrontmatter": "node ./scripts/updateMdFrontmatter.mjs --type removeFrontmatter --scan-pattern \"./src/content/docs/**/*.md\" --base-path cwd"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.36.1",
