@@ -113,6 +113,24 @@ export default defineConfig({
             { label: "深入异步更新", slug: "vue-learn/async-update" },
           ],
         },
+        {
+          label: "Vue Router",
+          items: [
+            {
+              label: "Location 和 History API 指南",
+              slug: "vue-router/version-3/location-history-api",
+            },
+            {
+              label: "Vue Router location 监听机制",
+              slug: "vue-router/version-3/router-location-listener",
+            },
+            {
+              label:
+                "记一次 router.push 抛出未捕获的 NavigationDuplicated Promise Rejection 引发的思考",
+              slug: "vue-router/version-3/router-navigation-duplicated-error",
+            },
+          ],
+        },
       ],
       lastUpdated: true,
       editLink: {
