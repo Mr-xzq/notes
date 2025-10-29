@@ -2,7 +2,7 @@
 title: Proxy 基本概念和使用
 ---
 
-[Object.defineProperty]: /basic/objectApi#objectdefineproperty
+[Object.defineProperty]: /basic/object-api#objectdefineproperty
 
 # Proxy 基本概念和使用
 

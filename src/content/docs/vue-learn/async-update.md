@@ -2,9 +2,9 @@
 title: Vue 异步更新 - nextTick
 ---
 
-[浏览器进程 - 线程]: /basic/browserProcessAndThread
-[事件循环]: /basic/eventLoop
-[深入理解 Vue 响应式]: /vueLearn/reactive
+[浏览器进程 - 线程]: /basic/browser-process-and-thread
+[事件循环]: /basic/event-loop
+[深入理解 Vue 响应式]: /vue-learn/reactive
 
 # Vue 异步更新 - nextTick
 

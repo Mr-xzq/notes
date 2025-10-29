@@ -2,7 +2,7 @@
 title: 继承
 ---
 
-[原型链]: /basic/prototypeChain
+[原型链]: /basic/prototype-chain
 [this]: /basic/this
 [原型式继承]: /basic/inherit#原型式继承
 [原型链继承]: /basic/inherit#原型链继承
