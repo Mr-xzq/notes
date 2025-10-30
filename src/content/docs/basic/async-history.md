@@ -2,8 +2,8 @@
 title: 简述 JS 异步发展不同阶段
 ---
 
-[Generator]: /basic/generator
-[Generator 自动执行]: /basic/generator#自动执行-generator
+[Generator]: ./generator
+[Generator 自动执行]: ./generator#自动执行-generator
 
 # 简述 JS 异步发展不同阶段
 

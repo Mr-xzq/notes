@@ -2,13 +2,13 @@
 title: 继承
 ---
 
-[原型链]: /basic/prototype-chain
-[this]: /basic/this
-[原型式继承]: /basic/inherit#原型式继承
-[原型链继承]: /basic/inherit#原型链继承
-[借用构造函数继承]: /basic/inherit#借用构造函数继承
-[组合继承]: /basic/inherit#组合继承
-[寄生式继承]: /basic/inherit#寄生式继承
+[原型链]: ./prototype-chain
+[this]: ./this
+[原型式继承]: #原型式继承
+[原型链继承]: #原型链继承
+[借用构造函数继承]: #借用构造函数继承
+[组合继承]: #组合继承
+[寄生式继承]: #寄生式继承
 [Object.create()]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create
 
 # 继承

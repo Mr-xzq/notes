@@ -27,6 +27,11 @@ const currentBase = process.env.DEPLOY_BASE ?? "/";
 export default defineConfig({
   site: currentSite,
   base: currentBase,
+  // https://docs.astro.build/zh-cn/reference/configuration-reference/#%E5%AF%B9-astrourl-%E7%9A%84%E5%BD%B1%E5%93%8D
+  trailingSlash: "never",
+  build: {
+    format: "file",
+  },
   integrations: [
     starlight({
       plugins: [starlightImageZoom()],

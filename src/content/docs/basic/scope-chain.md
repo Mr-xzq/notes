@@ -3,15 +3,15 @@ title: 作用域（链），执行期上下文（栈），变量提升，闭包
 ---
 
 [block scope]: https://es6.ruanyifeng.com/#docs/let#%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F
-[全局执行期上下文]: /basic/scope-chain#全局执行期上下文
-[函数执行期上下文]: /basic/scope-chain#函数执行期上下文
-[执行期上下文分类]: /basic/scope-chain#执行期上下文分类
-[JS 解析到执行过程]: /basic/scope-chain#js-由解析到执行的过程
+[全局执行期上下文]: #全局执行期上下文
+[函数执行期上下文]: #函数执行期上下文
+[执行期上下文分类]: #执行期上下文分类
+[JS 解析到执行过程]: #js-由解析到执行的过程
 [理解Javascript执行过程]: https://www.cnblogs.com/tugenhua0707/p/11980566.html
-[变量和函数提升]: /basic/scope-chain#变量提升和函数提升
-[执行期上下文]: /basic/scope-chain#执行期上下文
-[作用域链]: /basic/scope-chain#作用域链
-[作用域的嵌套]: /basic/scope-chain#作用域的嵌套
+[变量和函数提升]: #变量提升和函数提升
+[执行期上下文]: #执行期上下文
+[作用域链]: #作用域链
+[作用域的嵌套]: #作用域的嵌套
 
 # 作用域（链），执行期上下文（栈），变量提升，闭包
 

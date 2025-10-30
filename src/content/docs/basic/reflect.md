@@ -2,8 +2,8 @@
 title: Reflect
 ---
 
-[traverseObjectProperty]: /basic/traverse-object-property
-[proxy]: /basic/proxy
+[traverseObjectProperty]: ./traverse-object-property
+[proxy]: ./proxy
 
 # Reflect
 
